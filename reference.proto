@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package reference;
+
+option go_package = "reference/reference";
+
+message Reference{
+  int32 id = 1;
+  string name = 2;
+}
+
+message ReferenceName{
+  string name = 1;
+}
+
+message ReferenceId{
+  int32 id = 1;
+}
+
+service getter{
+  rpc GetReferenceId(ReferenceName) returns (ReferenceId){}
+}
+
+service crud{
+  rpc CreateReference(Reference) returns (Reference){}
+  rpc RemoveReference(ReferenceId) returns (Reference){}
+  rpc UpdateReference(Reference) returns (Reference){}
+  rpc DeleteReference(Reference) returns (Reference){}
+}

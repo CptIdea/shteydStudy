@@ -1,0 +1,18 @@
+Общая структура:
+  Сервисы:
+    Reference:
+      Связки:
+        - grpc
+        - postgresql
+      Предназначение: По grpc запросам от JournalRefenceFiller отдавать требуемые значения
+    JournalReferenceFiller:
+      Связки:
+        - grpc
+        - rabbitMQ
+      Предназначение: получать события из очереди A, заполнять сообщение данными от Reference и передавать в очередь B
+
+
+Тестовый кейс:
+  - В очередь A подается сообщение {"CounterTypeString":"electricity"}
+  - JournalReferenceFiller запрашивает id counterType'а по его текстовому представлению
+  - В очередь B отправляется сообщение {"CounterType":1}

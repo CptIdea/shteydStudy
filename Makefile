@@ -8,3 +8,12 @@ protoc:
  	--grpc-gateway_opt logtostderr=true \
  	--grpc-gateway_opt paths=source_relative \
  	 reference.proto
+
+build-reference:
+	go build -o build ./cmd/reference-grpc
+
+run-reference:
+	./build/reference-grpc
+
+test-reference:
+	go run ./tests/reference-grpc-client
